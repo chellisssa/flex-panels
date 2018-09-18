@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Flex Panels</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <style media="screen">
+    html {
+      box-sizing: border-box;
+      background: #ffc600;
+      font-family: "Open Sans Condensed", sans-serif;
+      font-size: 20px;
+    }
+    body {
+      margin: 0;
+    }
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+    .panels {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+    }
+    .panel {
+      background: #6b0f9c;
+      box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+      color: white;
+      text-align: center;
+      align-items: center;
+      transition:
+        font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+        flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+        background 0.2s;
+      font-size: 20px;
+      background-size: cover;
+      background-position: center;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .panel1 {
+      background-image: url(https://images.pexels.com/photos/1059682/pexels-photo-1059682.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    }
+    .panel2 {
+      background-image: url(https://images.pexels.com/photos/843302/pexels-photo-843302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    }
+    .panel3 {
+      background-image: url(https://images.pexels.com/photos/382423/pexels-photo-382423.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    }
+    .panel4 {
+      background-image: url(https://images.pexels.com/photos/408503/pexels-photo-408503.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    }
+    .panel5 {
+      background-image: url(https://images.pexels.com/photos/776113/pexels-photo-776113.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    }
+    .panel > * {
+      margin: 0;
+      width: 100%;
+      transition: transform 0.5s;
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .panel > *:first-child {
+      transform: translateY(-100%);
+    }
+    .panel.open-active > *:first-child {
+      transform: translateY(0);
+    }
+    .panel > *:last-child {
+      transform: translateY(100%);
+    }
+    .panel.open-active > *:last-child {
+      transform: translateY(0);
+    }
+    .panel p {
+      text-transform: uppercase;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 1.5em;
+    }
+    .panel p:nth-child(2) {
+      font-size: 4em;
+    }
+    .panel.open {
+      font-size: 40px;
+      flex: 4;
+    }
+    .cta {
+      color: white;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="panels">
+    <div class="panel panel1">
+      <p>yes</p>
+      <p>you</p>
+      <p>can</p>
+    </div>
+    <div class="panel panel2">
+      <p>just</p>
+      <p>become</p>
+      <p>fearless</p>
+    </div>
+    <div class="panel panel3">
+      <p>do</p>
+      <p>what</p>
+      <p>you love</p>
+    </div>
+    <div class="panel panel4">
+      <p>be</p>
+      <p>you</p>
+      <p>not them</p>
+    </div>
+    <div class="panel panel5">
+      <p>ask</p>
+      <p>believe</p>
+      <p>receive</p>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    const panels = document.querySelectorAll('.panel');
+
+    function toggleOpen() {
+      this.classList.toggle('open');
+    }
+
+    function toggleActive(e) {
+      if(e.propertyName.includes('flex')) {
+        this.classList.toggle('open-active');
+      }
+
+    }
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen))
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive))
+  </script>
+
+</body>
+</html>
